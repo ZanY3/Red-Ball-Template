@@ -17,7 +17,7 @@ public class Ball : MonoBehaviour
     {
         var hor = Input.GetAxis("Horizontal");
         //rb.velocity = new Vector3(hor, 0);
-        rb.AddForce(new Vector3(hor, 0) * moveForce);
+        rb.AddForce(new Vector3(hor, 0) * moveForce );
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
