@@ -12,6 +12,12 @@ public class Ball : MonoBehaviour
 
     public float partCount;
     public GameObject particle;
+
+    public AudioSource source;
+    public AudioClip coinSound;
+    public AudioClip jumpSound;
+    public static float coins;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();    
@@ -26,6 +32,7 @@ public class Ball : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
+            source.PlayOneShot(jumpSound);
             rb.velocity += Vector2.up * jump;
         }
         
@@ -51,7 +58,14 @@ public class Ball : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.name.Contains("Teleporter"))
+        if (collision.gameObject.CompareTag("Coin"))
+        {
+            Destroy(collision.gameObject);
+            source.PlayOneShot(coinSound);
+            coins++;
+            print(coins);
+        }
+        if (collision.gameObject.name.Contains("Teleporter"))
         {
             FindObjectOfType<GameManager>().Win();
         }

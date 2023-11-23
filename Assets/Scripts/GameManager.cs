@@ -12,15 +12,24 @@ public class GameManager : MonoBehaviour
     public bool hasWon;
     public List<string> levels;
 
+    public AudioSource source;
+    public AudioClip winSound;
+    public AudioClip loseSound;
+    public AudioClip gameOverSound;
+
     float targetTrasitionScale;
     public Transform Transition;
+    
+
 
     private void Start()
     {
+        Ball.coins = coins;
+        source = GetComponent<AudioSource>();
         DontDestroyOnLoad(gameObject);
     }
     private void Update()
-    {
+    { 
         var targetV3 = Vector3.one * targetTrasitionScale;
         Transition.localScale = Vector3.MoveTowards(Transition.localScale,targetV3,60 * Time.deltaTime);
     }
@@ -32,6 +41,9 @@ public class GameManager : MonoBehaviour
         currentLevel++;
         targetTrasitionScale = 30;
         Invoke("LoadNextScene",1f);
+        //source.clip = winSound;
+        //source.Play();
+        source.PlayOneShot(winSound);
     }
     public void Lose()
     {
@@ -46,10 +58,7 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(levels[0]);
             hp = 3;
         }
-    }
-    public void Coins()
-    {
-        coins++;
+        source.PlayOneShot(loseSound);
     }
     public void LoadNextScene()
     {
