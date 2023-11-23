@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jump: 8
-  moveForce: 0.76
+  moveForce: 7
   partCount: 10
   particle: {fileID: 9217461086556651289, guid: b68f7876f13b3914d912ea10c34fab30, type: 3}
   source: {fileID: 3890646833177740431}
