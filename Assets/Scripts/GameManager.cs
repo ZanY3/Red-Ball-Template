@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
 
     float targetTrasitionScale;
     public Transform Transition;
+    public TMP_Text coinsText;
     
 
 
@@ -29,7 +31,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
     private void Update()
-    { 
+    {
         var targetV3 = Vector3.one * targetTrasitionScale;
         Transition.localScale = Vector3.MoveTowards(Transition.localScale,targetV3,60 * Time.deltaTime);
     }
