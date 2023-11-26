@@ -18,11 +18,13 @@ public class Ball : MonoBehaviour
     public static float coins;
 
     public float jumperForce;
-    public float speedLimit = 10f;
+    public float speedLimit = 3.5f;
+    public GameObject gameManager;
 
 
     void Start()
     {
+        Instantiate(gameManager);
         rb = GetComponent<Rigidbody2D>();    
     }
 
@@ -38,15 +40,16 @@ public class Ball : MonoBehaviour
             source.PlayOneShot(jumpSound);
             rb.velocity += Vector2.up * jump;
         }
+
         if (rb.velocity.x > speedLimit)
         {
             rb.velocity = new Vector2(speedLimit, rb.velocity.y);
 
-            if (rb.velocity.x < -speedLimit)
-            {
-                rb.velocity = new Vector2(-speedLimit, rb.velocity.y);
-            }
 
+        }
+        if (rb.velocity.x < -speedLimit)
+        {
+            rb.velocity = new Vector2(-speedLimit, rb.velocity.y);
         }
     }
     void OnCollisionEnter2D(Collision2D collision)
@@ -75,6 +78,16 @@ public class Ball : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(gameObject);
+            for (int i = 0; i < partCount; i++)
+            {
+                var offset = Random.insideUnitSphere;
+                Instantiate(particle, transform.position + offset, transform.rotation);
+            }
+            FindObjectOfType<GameManager>().Lose();
+        }
         if (collision.gameObject.CompareTag("Coin"))
         {
             Destroy(collision.gameObject);

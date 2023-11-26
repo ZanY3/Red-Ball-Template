@@ -29,7 +29,12 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 60;
         Ball.coins = coins;
         source = GetComponent<AudioSource>();
+
         DontDestroyOnLoad(gameObject);
+        if( FindObjectsOfType<GameManager>().Length > 1)
+        {
+            Destroy(gameObject);
+        }
     }
     private void Update()
     {

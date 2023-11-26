@@ -197,9 +197,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &836651597726090037
 CircleCollider2D:
@@ -255,7 +255,9 @@ MonoBehaviour:
   source: {fileID: 3890646833177740431}
   coinSound: {fileID: 8300000, guid: e69a747f8b5ef93448855ba32ceaf188, type: 3}
   jumpSound: {fileID: 8300000, guid: ef4e8f8b24ea6d84bab5685a66a24c57, type: 3}
-  jumperForce: 0
+  jumperForce: 1.6
+  speedLimit: 10
+  gameManager: {fileID: 4571965869302321588, guid: 0a831704755c7a143a4b94aab340085c, type: 3}
 --- !u!82 &3890646833177740431
 AudioSource:
   m_ObjectHideFlags: 0
