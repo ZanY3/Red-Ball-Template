@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Application.targetFrameRate = 60;
         Ball.coins = coins;
         source = GetComponent<AudioSource>();
         DontDestroyOnLoad(gameObject);

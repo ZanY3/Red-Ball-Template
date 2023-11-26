@@ -249,12 +249,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jump: 8
-  moveForce: 7
+  moveForce: 700
   partCount: 10
   particle: {fileID: 9217461086556651289, guid: b68f7876f13b3914d912ea10c34fab30, type: 3}
   source: {fileID: 3890646833177740431}
   coinSound: {fileID: 8300000, guid: e69a747f8b5ef93448855ba32ceaf188, type: 3}
   jumpSound: {fileID: 8300000, guid: ef4e8f8b24ea6d84bab5685a66a24c57, type: 3}
+  jumperForce: 0
 --- !u!82 &3890646833177740431
 AudioSource:
   m_ObjectHideFlags: 0

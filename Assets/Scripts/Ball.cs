@@ -18,6 +18,8 @@ public class Ball : MonoBehaviour
     public static float coins;
 
     public float jumperForce;
+    public float speedLimit = 10f;
+
 
     void Start()
     {
@@ -29,14 +31,23 @@ public class Ball : MonoBehaviour
     {
         var hor = Input.GetAxis("Horizontal");
         //rb.velocity = new Vector3(hor, 0);
-        rb.AddForce(new Vector3(hor, 0) * moveForce );
+        rb.AddForce(new Vector2(hor, 0) * moveForce * Time.deltaTime);
 
-        if(Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             source.PlayOneShot(jumpSound);
             rb.velocity += Vector2.up * jump;
         }
-        
+        if (rb.velocity.x > speedLimit)
+        {
+            rb.velocity = new Vector2(speedLimit, rb.velocity.y);
+
+            if (rb.velocity.x < -speedLimit)
+            {
+                rb.velocity = new Vector2(-speedLimit, rb.velocity.y);
+            }
+
+        }
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -55,6 +66,7 @@ public class Ball : MonoBehaviour
         if (collision.gameObject.name.Contains("Jumper"))
         {
             rb.velocity += Vector2.up * jump * jumperForce;
+            source.PlayOneShot(jumpSound);
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
