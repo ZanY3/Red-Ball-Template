@@ -2842,6 +2842,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3679836242420907725, guid: 3091688171d106049b05ce0dfa9d66a8, type: 3}
+      propertyPath: jumperForce
+      value: 1.7
+      objectReference: {fileID: 0}
     - target: {fileID: 5054453258142846242, guid: 3091688171d106049b05ce0dfa9d66a8, type: 3}
       propertyPath: m_Name
       value: Ball

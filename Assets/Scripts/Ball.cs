@@ -17,6 +17,8 @@ public class Ball : MonoBehaviour
     public AudioClip jumpSound;
     public static float coins;
 
+    public float jumperForce;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();    
@@ -49,6 +51,10 @@ public class Ball : MonoBehaviour
                 Instantiate(particle, transform.position + offset, transform.rotation);
             }
             FindObjectOfType<GameManager>().Lose();
+        }
+        if (collision.gameObject.name.Contains("Jumper"))
+        {
+            rb.velocity += Vector2.up * jump * jumperForce;
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
